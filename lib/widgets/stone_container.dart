@@ -13,6 +13,9 @@ class StoneContainer extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final katro = ref.watch(katroProvider);
     int totalInHand = playerIndex == katro.mainPlayer ? katro.totalInHand : 0;
+    Color playerColor = playerIndex == 1 ? Colors.red : Colors.teal;
+    Color borderColor =
+        katro.mainPlayer == playerIndex ? playerColor : Colors.transparent;
     return Container(
       margin: const EdgeInsets.all(4),
       height: 35,
@@ -20,6 +23,7 @@ class StoneContainer extends ConsumerWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           color: const Color(0xFFe7ecef),
+          border: Border.all(width: 2, color: borderColor),
           boxShadow: [
             BoxShadow(
                 blurRadius: 10.0,

@@ -16,11 +16,12 @@ class PlayerScore extends ConsumerWidget {
         : katro.board
             .getRange(8, 16)
             .reduce((value, element) => value + element);
-    TextStyle textStyle = const TextStyle(
+    Color playerColor = playerIndex == 1 ? Colors.red : Colors.teal;
+    TextStyle textStyle = TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.bold,
         letterSpacing: 1,
-        color: Colors.black38);
+        color: playerColor);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

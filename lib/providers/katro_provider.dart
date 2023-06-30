@@ -69,6 +69,7 @@ class KatroNotifier extends StateNotifier<Katro> {
     if (!state.canMoveFrom(index)) return;
     state = state.copyWith(isMoving: true);
     await _move(index);
-    state = state.copyWith(mainPlayer: -state.mainPlayer, isMoving: false);
+    state = state.copyWith(
+        mainPlayer: -state.mainPlayer, isMoving: false, currentIndex: -1);
   }
 }

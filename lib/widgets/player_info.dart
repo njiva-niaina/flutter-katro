@@ -14,12 +14,21 @@ class PlayerInfo extends ConsumerWidget {
   final int playerIndex;
 
   Widget turnInfo(int mainPlayer) {
+    Color playerColor = playerIndex == 1 ? Colors.red : Colors.teal;
     return Text(playerIndex == mainPlayer ? "YOUR TURN!" : "",
-        style: const TextStyle(
+        style: TextStyle(
             fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w900,
+            shadows: [
+              const Shadow(
+                  offset: Offset(3, 3), color: Colors.black38, blurRadius: 10),
+              Shadow(
+                  offset: const Offset(-3, -3),
+                  color: Colors.white.withOpacity(0.85),
+                  blurRadius: 10)
+            ],
             letterSpacing: 1,
-            color: Colors.black38));
+            color: playerColor));
   }
 
   @override
