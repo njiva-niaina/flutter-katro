@@ -20,14 +20,15 @@ class Hole extends ConsumerWidget {
         width: 45,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(50),
-            color: const Color(0xFFe7ecef),
-            boxShadow: const [
+            color: Colors.grey.shade300,
+            border: Border.all(width: 1, color: Colors.transparent),
+            boxShadow: [
               BoxShadow(
                   blurRadius: 10.0,
-                  offset: Offset(-10, -10),
-                  color: Colors.white,
+                  offset: const Offset(-10, -10),
+                  color: Colors.white.withOpacity(0.85),
                   inset: true),
-              BoxShadow(
+              const BoxShadow(
                   blurRadius: 10.0,
                   offset: Offset(10, 10),
                   color: Color(0xFFa7a9af),

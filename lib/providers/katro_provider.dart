@@ -14,13 +14,17 @@ class KatroNotifier extends StateNotifier<Katro> {
             orientation: HashMap.from({1: 1, -1: 1}),
             isMoving: false,
             mainPlayer: 1,
+            currentIndex: -1,
             totalInHand: 0));
 
   Future<void> _put(int index) async {
     await Future.delayed(const Duration(milliseconds: 250));
     var newBoard = List<int>.from(state.board);
     newBoard[index] += 1;
-    state = state.copyWith(board: newBoard, totalInHand: state.totalInHand - 1);
+    state = state.copyWith(
+        board: newBoard,
+        totalInHand: state.totalInHand - 1,
+        currentIndex: index);
     await Future.delayed(const Duration(milliseconds: 500));
   }
 
@@ -45,6 +49,7 @@ class KatroNotifier extends StateNotifier<Katro> {
   }
 
   Future<void> _move(int index, {isDefault = true}) async {
+    state = state.copyWith(currentIndex: index);
     if (isDefault) {
       await _take(index);
     } else {

@@ -19,25 +19,29 @@ class Katro {
       required this.mainPlayer,
       required this.orientation,
       required this.isMoving,
-      required this.totalInHand});
+      required this.totalInHand,
+      required this.currentIndex});
 
   final List<int> board;
   final Map<int, int> orientation;
   final bool isMoving;
   final int mainPlayer;
   final int totalInHand;
+  final int currentIndex;
 
   Katro copyWith(
       {List<int>? board,
       Map<int, int>? orientation,
       bool? isMoving,
       int? mainPlayer,
-      int? totalInHand}) {
+      int? totalInHand,
+      int? currentIndex}) {
     return Katro(
         board: board ?? this.board,
         isMoving: isMoving ?? this.isMoving,
         mainPlayer: mainPlayer ?? this.mainPlayer,
         orientation: orientation ?? this.orientation,
+        currentIndex: currentIndex ?? this.currentIndex,
         totalInHand: totalInHand ?? this.totalInHand);
   }
 
