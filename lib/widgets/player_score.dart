@@ -11,6 +11,7 @@ class PlayerScore extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final katro = ref.watch(katroProvider);
     String playerName = playerIndex == 1 ? 'Player 1' : "Player 2";
+    int adder = playerIndex == katro.mainPlayer ? katro.totalInHand : 0;
     int score = playerIndex == 1
         ? katro.board.getRange(0, 8).reduce((value, element) => value + element)
         : katro.board
@@ -27,7 +28,7 @@ class PlayerScore extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(playerName.toUpperCase(), style: textStyle),
-        Text("$score", style: textStyle)
+        Text("${score + adder}", style: textStyle)
       ],
     );
   }

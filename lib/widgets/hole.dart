@@ -14,8 +14,19 @@ class Hole extends ConsumerWidget {
     final katro = ref.watch(katroProvider);
     Color borderColor =
         katro.currentIndex == index ? Colors.brown : Colors.transparent;
+    ref.listen(katroProvider, (previous, next) async {
+      var range = next.mainPlayer == 1 ? [8, 16] : [0, 8];
+      var score = next.board
+          .getRange(range[0], range[1])
+          .reduce((value, element) => value + element);
+      if (score <= 1) {
+        print(score);
+      }
+    });
     return GestureDetector(
-      onTap: () async => await ref.read(katroProvider.notifier).play(index),
+      onTap: () async {
+        await ref.read(katroProvider.notifier).play(index);
+      },
       child: Container(
         margin: const EdgeInsets.all(4),
         height: 45,
