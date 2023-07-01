@@ -32,9 +32,17 @@ class KatroNotifier extends StateNotifier<Katro> {
     var newBoard = List<int>.from(state.board);
     var total = newBoard[index];
     newBoard[index] = 0;
-    state =
-        state.copyWith(board: newBoard, totalInHand: state.totalInHand + total);
-    await Future.delayed(const Duration(milliseconds: 250));
+    if (total > 0) {
+      state = state.copyWith(
+          board: newBoard,
+          totalInHand: state.totalInHand + total,
+          currentIndex: index);
+    } else {
+      state = state.copyWith(
+        board: newBoard,
+      );
+    }
+    await Future.delayed(const Duration(milliseconds: 50));
   }
 
   Future<void> _takeWithOpponent(int index) async {
@@ -49,7 +57,6 @@ class KatroNotifier extends StateNotifier<Katro> {
   }
 
   Future<void> _move(int index, {isDefault = true}) async {
-    state = state.copyWith(currentIndex: index);
     if (isDefault) {
       await _take(index);
     } else {

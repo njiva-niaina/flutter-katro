@@ -16,7 +16,8 @@ class PlayerScore extends ConsumerWidget {
         : katro.board
             .getRange(8, 16)
             .reduce((value, element) => value + element);
-    Color playerColor = playerIndex == 1 ? Colors.red : Colors.teal;
+    Color playerColor =
+        playerIndex == katro.mainPlayer ? Colors.brown : Colors.black38;
     TextStyle textStyle = TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.bold,

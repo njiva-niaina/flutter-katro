@@ -16,7 +16,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(fontFamily: GoogleFonts.poppins().fontFamily),
       debugShowCheckedModeBanner: false,
-      home: Scaffold(backgroundColor: Colors.grey.shade300, body: const Game()),
+      home: const Scaffold(backgroundColor: Color(0xffe7ecef), body: Game()),
     );
   }
 }

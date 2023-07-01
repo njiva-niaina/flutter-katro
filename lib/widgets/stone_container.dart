@@ -13,9 +13,6 @@ class StoneContainer extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final katro = ref.watch(katroProvider);
     int totalInHand = playerIndex == katro.mainPlayer ? katro.totalInHand : 0;
-    Color playerColor = playerIndex == 1 ? Colors.red : Colors.teal;
-    Color borderColor =
-        katro.mainPlayer == playerIndex ? playerColor : Colors.transparent;
     return Container(
       margin: const EdgeInsets.all(4),
       height: 35,
@@ -23,16 +20,15 @@ class StoneContainer extends ConsumerWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           color: const Color(0xFFe7ecef),
-          border: Border.all(width: 2, color: borderColor),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
-                blurRadius: 10.0,
-                offset: const Offset(-10, -10),
-                color: Colors.white.withOpacity(0.85),
+                blurRadius: 2.0,
+                offset: Offset(-2, -2),
+                color: Colors.white,
                 inset: true),
-            const BoxShadow(
-                blurRadius: 10.0,
-                offset: Offset(10, 10),
+            BoxShadow(
+                blurRadius: 2.0,
+                offset: Offset(2, 2),
                 color: Color(0xFFa7a9af),
                 inset: true)
           ]),

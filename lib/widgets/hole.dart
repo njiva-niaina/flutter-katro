@@ -12,9 +12,8 @@ class Hole extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final katro = ref.watch(katroProvider);
-    Color playerColor = katro.mainPlayer == 1 ? Colors.red : Colors.teal;
     Color borderColor =
-        katro.currentIndex == index ? playerColor : Colors.transparent;
+        katro.currentIndex == index ? Colors.brown : Colors.transparent;
     return GestureDetector(
       onTap: () async => await ref.read(katroProvider.notifier).play(index),
       child: Container(
@@ -23,17 +22,17 @@ class Hole extends ConsumerWidget {
         width: 45,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(50),
-            color: Colors.grey.shade300,
+            color: const Color(0xFFe7ecef),
             border: Border.all(width: 2, color: borderColor),
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
-                  blurRadius: 10.0,
-                  offset: const Offset(-10, -10),
-                  color: Colors.white.withOpacity(0.85),
+                  blurRadius: 4.0,
+                  offset: Offset(-4, -4),
+                  color: Colors.white,
                   inset: true),
-              const BoxShadow(
-                  blurRadius: 10.0,
-                  offset: Offset(10, 10),
+              BoxShadow(
+                  blurRadius: 4.0,
+                  offset: Offset(4, 4),
                   color: Color(0xFFa7a9af),
                   inset: true)
             ]),

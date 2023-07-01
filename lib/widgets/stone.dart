@@ -9,7 +9,7 @@ class Stone extends StatelessWidget {
       height: 7,
       width: 7,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50), color: Colors.blue),
+          borderRadius: BorderRadius.circular(50), color: Colors.brown),
     );
   }
 }
