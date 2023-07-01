@@ -7,6 +7,8 @@ import '../utilities/katro.dart';
 final katroProvider =
     StateNotifierProvider<KatroNotifier, Katro>((ref) => KatroNotifier());
 
+final darkThemeProvider = StateProvider<bool>((ref) => false);
+
 class KatroNotifier extends StateNotifier<Katro> {
   KatroNotifier()
       : super(Katro(

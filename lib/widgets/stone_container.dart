@@ -2,7 +2,8 @@ import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../providers/katro_provider.dart';
+import '../consts/color.dart';
+import '../providers/game_provider.dart';
 import 'stone.dart';
 
 class StoneContainer extends ConsumerWidget {
@@ -12,6 +13,7 @@ class StoneContainer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final katro = ref.watch(katroProvider);
+    final isDarkTheme = ref.watch(darkThemeProvider);
     int totalInHand = playerIndex == katro.mainPlayer ? katro.totalInHand : 0;
     return Container(
       margin: const EdgeInsets.all(4),
@@ -19,17 +21,17 @@ class StoneContainer extends ConsumerWidget {
       width: 120,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          color: const Color(0xFFe7ecef),
-          boxShadow: const [
+          color: isDarkTheme ? ThemeColor.darkColorBg : ThemeColor.lightColorBg,
+          boxShadow: [
             BoxShadow(
                 blurRadius: 2.0,
-                offset: Offset(-2, -2),
-                color: Colors.white,
+                offset: const Offset(-2, -2),
+                color: isDarkTheme ? ThemeColor.darkText : ThemeColor.lightText,
                 inset: true),
             BoxShadow(
                 blurRadius: 2.0,
-                offset: Offset(2, 2),
-                color: Color(0xFFa7a9af),
+                offset: const Offset(2, 2),
+                color: isDarkTheme ? ThemeColor.lightText : ThemeColor.darkText,
                 inset: true)
           ]),
       child: Column(

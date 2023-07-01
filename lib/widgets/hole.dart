@@ -2,7 +2,8 @@ import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../providers/katro_provider.dart';
+import '../consts/color.dart';
+import '../providers/game_provider.dart';
 import 'stones.dart';
 
 class Hole extends ConsumerWidget {
@@ -12,8 +13,11 @@ class Hole extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final katro = ref.watch(katroProvider);
+    final isDarkTheme = ref.watch(darkThemeProvider);
+    Color color =
+        isDarkTheme ? ThemeColor.lightTextMain : ThemeColor.darkTextMain;
     Color borderColor =
-        katro.currentIndex == index ? Colors.brown : Colors.transparent;
+        katro.currentIndex == index ? color : Colors.transparent;
     ref.listen(katroProvider, (previous, next) async {
       var range = next.mainPlayer == 1 ? [8, 16] : [0, 8];
       var score = next.board
@@ -33,18 +37,21 @@ class Hole extends ConsumerWidget {
         width: 45,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(50),
-            color: const Color(0xFFe7ecef),
+            color:
+                isDarkTheme ? ThemeColor.darkColorBg : ThemeColor.lightColorBg,
             border: Border.all(width: 2, color: borderColor),
-            boxShadow: const [
+            boxShadow: [
               BoxShadow(
                   blurRadius: 4.0,
-                  offset: Offset(-4, -4),
-                  color: Colors.white,
+                  offset: const Offset(-4, -4),
+                  color:
+                      isDarkTheme ? ThemeColor.darkText : ThemeColor.lightText,
                   inset: true),
               BoxShadow(
                   blurRadius: 4.0,
-                  offset: Offset(4, 4),
-                  color: Color(0xFFa7a9af),
+                  offset: const Offset(4, 4),
+                  color:
+                      isDarkTheme ? ThemeColor.lightText : ThemeColor.darkText,
                   inset: true)
             ]),
         child: Column(
