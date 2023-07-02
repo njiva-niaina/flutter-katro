@@ -102,4 +102,53 @@ class Katro {
 
     return -1;
   }
+
+  Katro _put(int index, Katro katro) {
+    var newBoard = List<int>.from(katro.board);
+    newBoard[index] += 1;
+    return katro.copyWith(
+        board: newBoard,
+        totalInHand: katro.totalInHand - 1,
+        currentIndex: index);
+  }
+
+  Katro _take(int index, Katro katro) {
+    var newBoard = List<int>.from(katro.board);
+    var total = newBoard[index];
+    newBoard[index] = 0;
+    return katro.copyWith(
+      board: newBoard,
+      totalInHand: katro.totalInHand + total,
+    );
+  }
+
+  Katro _takeWithOpponent(int index, Katro katro) {
+    var newKatro = _take(index, katro);
+    if ((index >= 4 && index <= 7) || (index >= 8 && index <= 11)) {
+      var mod = index > 7 ? 8 : 16;
+      if (newKatro.board[(index + 4) % mod] == 0 &&
+          newKatro.isFrontEmptyFrom((index + 4) % mod)) {
+        newKatro = _take((index + 8) % mod, newKatro);
+      }
+      newKatro = _take((index + 4) % mod, newKatro);
+    }
+    return newKatro;
+  }
+
+  Katro _move(int index, int orientation, Katro katro, {isDefault = true}) {
+    Katro newKatro;
+    if (isDefault) {
+      newKatro = _take(index, katro);
+    } else {
+      newKatro = _takeWithOpponent(index, katro);
+    }
+    while (newKatro.totalInHand > 0) {
+      index = Katro.next(index, orientation);
+      newKatro = _put(index, newKatro);
+      if (newKatro.totalInHand == 0 && newKatro.board[index] > 1) {
+        newKatro = _move(index, orientation, newKatro, isDefault: false);
+      }
+    }
+    return newKatro;
+  }
 }
