@@ -9,4 +9,5 @@ class ThemeColor {
   static Color darkColorBg = const Color(0xff23262a);
   static Color darkText = Colors.black38;
   static Color darkTextMain = Colors.black87;
+  static Color darkTextSecond = Colors.black54;
 }

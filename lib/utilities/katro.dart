@@ -19,12 +19,14 @@ class Katro {
       required this.mainPlayer,
       required this.orientation,
       required this.isMoving,
+      required this.isPlaying,
       required this.totalInHand,
       required this.currentIndex});
 
   final List<int> board;
   final Map<int, int> orientation;
   final bool isMoving;
+  final bool isPlaying;
   final int mainPlayer;
   final int totalInHand;
   final int currentIndex;
@@ -33,11 +35,13 @@ class Katro {
       {List<int>? board,
       Map<int, int>? orientation,
       bool? isMoving,
+      bool? isPlaying,
       int? mainPlayer,
       int? totalInHand,
       int? currentIndex}) {
     return Katro(
         board: board ?? this.board,
+        isPlaying: isPlaying ?? this.isPlaying,
         isMoving: isMoving ?? this.isMoving,
         mainPlayer: mainPlayer ?? this.mainPlayer,
         orientation: orientation ?? this.orientation,

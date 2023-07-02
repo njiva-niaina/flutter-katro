@@ -15,6 +15,7 @@ class KatroNotifier extends StateNotifier<Katro> {
             board: List<int>.filled(16, 2),
             orientation: HashMap.from({1: 1, -1: 1}),
             isMoving: false,
+            isPlaying: false,
             mainPlayer: 1,
             currentIndex: -1,
             totalInHand: 0));
@@ -76,7 +77,7 @@ class KatroNotifier extends StateNotifier<Katro> {
 
   Future<void> play(int index) async {
     if (!state.canMoveFrom(index)) return;
-    state = state.copyWith(isMoving: true);
+    state = state.copyWith(isMoving: true, isPlaying: true);
     await _move(index);
     state = state.copyWith(
         mainPlayer: -state.mainPlayer, isMoving: false, currentIndex: -1);
